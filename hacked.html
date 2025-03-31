@@ -55,10 +55,43 @@
             <li>Information on enabling two-factor authentication (2FA)</li>
             <li>Advice on keeping software up to date</li>
         </ul>
+
+        <h2>Collected Data</h2>
+        <div id="collected-data"></div>
+        <button id="delete-data" class="btn btn-danger mt-3">Delete Collected Data</button>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const collectedDataDiv = document.getElementById('collected-data');
+            const deleteDataButton = document.getElementById('delete-data');
+
+            // Display the locally stored data
+            const fakeData = JSON.parse(localStorage.getItem('fakeData'));
+            if (fakeData) {
+                collectedDataDiv.innerHTML = `
+                    <p><strong>Email:</strong> ${fakeData.email}</p>
+                    <p><strong>Password:</strong> ${fakeData.password}</p>
+                `;
+            } else {
+                collectedDataDiv.innerHTML = '<p>No data collected.</p>';
+            }
+
+            // Add a delete button to remove the collected data
+            deleteDataButton.addEventListener('click', function() {
+                localStorage.removeItem('fakeData');
+                collectedDataDiv.innerHTML = '<p>No data collected.</p>';
+                Swal.fire({
+                    title: 'Data Deleted',
+                    text: 'The collected data has been deleted.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
