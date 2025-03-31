@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Your Knowledge</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="#">Cyberattack Simulation</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="hacked.html">Hacked Page</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="alert alert-warning" role="alert">
+            This is a simulation for educational purposes only. No real credentials or personal data are being processed.
+        </div>
+        <h1>Test Your Knowledge</h1>
+        <p>Identify the different types of cyberattacks and learn how to protect yourself.</p>
+
+        <h2>Phishing Email</h2>
+        <p>Can you identify the phishing email below?</p>
+        <div class="card">
+            <div class="card-body">
+                <p>Dear User,</p>
+                <p>We have detected suspicious activity on your account. Please click the link below to verify your account information:</p>
+                <a href="#" class="btn btn-danger" onclick="showPhishingAlert()">Verify Account</a>
+            </div>
+        </div>
+
+        <h2>Fake Login Page</h2>
+        <p>Enter your credentials to log in:</p>
+        <form>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <h2>Fake Tech Support Pop-up</h2>
+        <p>Click the button below to see a fake tech support pop-up:</p>
+        <button class="btn btn-warning" onclick="showTechSupportAlert()">Show Pop-up</button>
+    </div>
+
+    <script>
+        function showPhishingAlert() {
+            Swal.fire({
+                title: 'Warning!',
+                text: 'This is a phishing email! Do not click on suspicious links. Always verify the sender\'s email address and look for signs of phishing.',
+                icon: 'warning',
+                confirmButtonText: 'Got it!'
+            });
+        }
+
+        function showTechSupportAlert() {
+            Swal.fire({
+                title: 'Warning!',
+                text: 'This is a fake tech support pop-up! Do not call the number or download any software. Always verify the legitimacy of tech support messages.',
+                icon: 'warning',
+                confirmButtonText: 'Got it!'
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const email = document.querySelector('#email').value;
+                const password = document.querySelector('#password').value;
+
+                // Log fake data locally
+                console.log('Email:', email);
+                console.log('Password:', password);
+
+                // Display SweetAlert warning message
+                Swal.fire({
+                    title: 'Warning!',
+                    text: 'This is a fake login page! Do not enter your real credentials. Always check the URL and ensure the website is legitimate.',
+                    icon: 'warning',
+                    confirmButtonText: 'Got it!'
+                }).then(() => {
+                    // Mock Firebase response
+                    console.log('Mock Firebase response: Data would be stored here.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
