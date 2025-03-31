@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake E-commerce</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="#">Cyberattack Simulation</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="hacked.html">Hacked Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="test.html">Test Your Knowledge</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="alert alert-warning" role="alert">
+            This is a simulation for educational purposes only. No real credentials or personal data are being processed.
+        </div>
+        <h1>Fake E-commerce</h1>
+        <p>Explore different types of fake e-commerce websites and learn how to protect yourself.</p>
+
+        <h2>Fake Product Listing</h2>
+        <p>Can you identify the fake product listing below?</p>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Amazing Product</h5>
+                <p class="card-text">Price: $99.99</p>
+                <a href="#" class="btn btn-danger" onclick="showProductAlert()">Buy Now</a>
+            </div>
+        </div>
+
+        <h2>Fake Credit Card Information</h2>
+        <p>Enter your credit card information to complete the purchase:</p>
+        <form>
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" class="form-control" id="card-number" placeholder="Enter card number">
+            </div>
+            <div class="form-group">
+                <label for="expiry-date">Expiry Date</label>
+                <input type="text" class="form-control" id="expiry-date" placeholder="MM/YY">
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv" placeholder="CVV">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <h2>Fake Security Questions</h2>
+        <p>Answer the security questions below:</p>
+        <form>
+            <div class="form-group">
+                <label for="security-question-1">What is your mother's maiden name?</label>
+                <input type="text" class="form-control" id="security-question-1" placeholder="Enter answer">
+            </div>
+            <div class="form-group">
+                <label for="security-question-2">What was the name of your first pet?</label>
+                <input type="text" class="form-control" id="security-question-2" placeholder="Enter answer">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function showProductAlert() {
+            Swal.fire({
+                title: 'Warning!',
+                text: 'This is a fake product listing! Do not enter your real credit card information. Always verify the legitimacy of e-commerce websites before making a purchase.',
+                icon: 'warning',
+                confirmButtonText: 'Got it!'
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const formData = new FormData(form);
+                    const fakeData = {};
+                    formData.forEach((value, key) => {
+                        fakeData[key] = value;
+                    });
+
+                    // Store fake data locally using localStorage
+                    localStorage.setItem('fakeData', JSON.stringify(fakeData));
+
+                    // Display SweetAlert warning message
+                    Swal.fire({
+                        title: 'Warning!',
+                        text: 'This is a fake form! Do not enter your real information. Always verify the legitimacy of websites before providing personal information.',
+                        icon: 'warning',
+                        confirmButtonText: 'Got it!'
+                    }).then(() => {
+                        // Mock Firebase response
+                        console.log('Mock Firebase response: Data would be stored here.');
+                    });
+                });
+            });
+
+            // Add a delete button to remove the collected data
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete Collected Data';
+            deleteButton.classList.add('btn', 'btn-danger', 'mt-3');
+            deleteButton.addEventListener('click', function() {
+                localStorage.removeItem('fakeData');
+                Swal.fire({
+                    title: 'Data Deleted',
+                    text: 'The collected data has been deleted.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            });
+
+            document.body.appendChild(deleteButton);
+        });
+    </script>
+</body>
+</html>

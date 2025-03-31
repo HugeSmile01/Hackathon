@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.querySelector('#email').value;
         const password = document.querySelector('#password').value;
 
-        // Log fake data locally
-        console.log('Email:', email);
-        console.log('Password:', password);
+        // Store fake data locally using localStorage
+        const fakeData = { email, password };
+        localStorage.setItem('fakeData', JSON.stringify(fakeData));
 
         // Display SweetAlert warning message
         Swal.fire({
@@ -21,4 +21,20 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = 'hacked.html';
         });
     });
+
+    // Add a delete button to remove the collected data
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete Collected Data';
+    deleteButton.classList.add('btn', 'btn-danger', 'mt-3');
+    deleteButton.addEventListener('click', function() {
+        localStorage.removeItem('fakeData');
+        Swal.fire({
+            title: 'Data Deleted',
+            text: 'The collected data has been deleted.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    });
+
+    document.body.appendChild(deleteButton);
 });
